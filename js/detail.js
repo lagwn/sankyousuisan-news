@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // コンテンツ要素にIDを設定
         document.getElementById('news-content').id = `post-${data.id}`;
 
+        // HTTP画像URLをプロキシ経由に変換（Mixed Content対策）
+        convertHttpImagesToProxy(bodyElement);
+
         // 画像レイアウトを処理
         processImageLayout(isRichContent);
 
@@ -291,4 +294,47 @@ function processRawContent(newsBody) {
     // 既存のコンテンツを置き換え
     newsBody.innerHTML = '';
     newsBody.appendChild(fragment);
+}
+
+/**
+ * HTTP画像URLをプロキシ経由のURLに変換する
+ * Mixed Content問題を回避するため
+ */
+function convertHttpImagesToProxy(container) {
+    // 対象ドメイン
+    const targetDomains = [
+        'www2.sankyou-suisan.co.jp',
+        'sankyou-suisan.co.jp'
+    ];
+
+    // img要素のsrc属性を変換
+    const images = container.querySelectorAll('img');
+    images.forEach(img => {
+        const src = img.getAttribute('src');
+        if (src && src.startsWith('http://')) {
+            const url = new URL(src);
+            if (targetDomains.some(domain => url.hostname.includes(domain))) {
+                const proxyUrl = `/api/image-proxy?url=${encodeURIComponent(src)}`;
+                img.setAttribute('src', proxyUrl);
+            }
+        }
+    });
+
+    // a要素のhref属性を変換（画像リンク）
+    const links = container.querySelectorAll('a');
+    links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('http://')) {
+            const url = new URL(href);
+            if (targetDomains.some(domain => url.hostname.includes(domain))) {
+                // 画像ファイルの拡張子チェック
+                const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+                const isImage = imageExtensions.some(ext => href.toLowerCase().includes(ext));
+                if (isImage) {
+                    const proxyUrl = `/api/image-proxy?url=${encodeURIComponent(href)}`;
+                    link.setAttribute('href', proxyUrl);
+                }
+            }
+        }
+    });
 }
