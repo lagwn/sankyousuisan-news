@@ -1,0 +1,512 @@
+@charset "UTF-8";
+@use 'variables' as *;
+
+/* Reset */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    background: transparent;
+}
+
+body
+{
+    line-height: 1;
+}
+
+ol,
+ul
+{
+    list-style: none;
+}
+
+blockquote,
+q
+{
+    quotes: none;
+}
+
+:focus
+{
+    outline: 0;
+}
+
+ins
+{
+    text-decoration: none;
+}
+
+del
+{
+    text-decoration: line-through;
+}
+
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+caption
+{
+    width: 100%;
+}
+
+/* 共通タグ */
+body
+{
+    background-color: $bg-light;
+    margin: 0;
+    padding: 20px 0 0;
+    font: 0.8em/1.8 $font-family;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p
+{
+    margin: 0;
+    padding: 0 0 15px;
+}
+
+ul,
+ol
+{
+    padding: 0 0 15px 30px;
+    margin: 0;
+}
+
+h1
+{
+    font-size: 20px;
+    line-height: 22px;
+}
+
+h2
+{
+    font-size: 18px;
+    line-height: 20px;
+}
+
+h3
+{
+    font-size: 16px;
+    line-height: 18px;
+}
+
+h4
+{
+    font-size: 14px;
+    line-height: 16px;
+}
+
+h5
+{
+    font-size: 12px;
+    line-height: 14px;
+}
+
+h6
+{
+    font-size: 11px;
+    line-height: 13px;
+}
+
+img
+{
+    border: none;
+}
+
+a
+{
+    color: $secondary-color;
+    text-decoration: none;
+    outline: none;
+
+    &:hover
+    {
+        color: #999;
+        text-decoration: underline;
+    }
+}
+
+/* スペース領域 */
+#rap
+{
+    text-align: left;
+    background: $bg-light;
+    width: 755px;
+    margin: -20px auto 0 auto;
+}
+
+#alpha
+{
+    float: left;
+    text-align: left;
+    width: 725px;
+    padding: 17px 15px 20px 15px;
+}
+
+.alpha_bg
+{
+    background: url('../img/alpha_bg.jpg') no-repeat left top;
+    width: 755px;
+}
+
+#footer
+{
+    clear: both;
+    height: 36px;
+    background: $primary-color no-repeat;
+    border-top: 2px solid $primary-color;
+    width: 755px;
+    margin: 0 auto;
+}
+
+/* コンテンツ */
+.content
+{
+    clear: both;
+
+    .pagename
+    {
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        clear: both;
+        color: #ffffff;
+        font-size: 16px;
+        line-height: 18px;
+        height: 34px;
+    }
+
+    a
+    {
+        color: $accent-color;
+
+        &:hover
+        {
+            color: $accent-hover;
+        }
+    }
+
+    ul
+    {
+        margin-left: 25px;
+        padding-left: 0;
+        list-style-type: disc;
+    }
+
+    ol
+    {
+        margin-left: 30px;
+        padding-left: 0;
+        list-style-type: decimal;
+    }
+
+    blockquote
+    {
+        margin: 0 0 15px;
+        padding: 10px 20px;
+        background-color: #e1f5f9;
+        border: 1px solid #b2d3e0;
+
+        p
+        {
+            padding: 0;
+            margin: 0;
+        }
+
+        ol,
+        ul
+        {
+            padding: 0;
+            margin: 0 0 0 20px;
+        }
+    }
+
+    .postmetadata
+    {
+        font-size: 12px;
+        line-height: 14px;
+        background: url('../img/entry_bg.gif') no-repeat right bottom;
+        width: 220px;
+        padding: 0 0 7px 0;
+        margin: 0 15px 10px 0;
+        color: #555;
+        clear: both;
+        float: right;
+        text-align: right;
+    }
+}
+
+/* ページ */
+.page
+{
+    padding: 20px 0;
+    width: 735px;
+
+    .back-link
+    {
+        clear: both;
+        margin: 15px 4px 15px 0;
+        width: 100px;
+        float: right;
+
+        img
+        {
+            margin-right: 5px;
+            margin-bottom: 3px;
+        }
+    }
+}
+
+/* 記事本文の画像グリッドレイアウト */
+#news-body
+{
+
+    // セクションタイトル（画像の説明テキスト）
+    .section-title
+    {
+        font-weight: normal;
+        font-size: inherit;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        padding-bottom: 0;
+        clear: both;
+    }
+
+    // 画像グリッド（2列表示）
+    .image-grid
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding-bottom: 0;
+
+        a
+        {
+            display: block;
+            margin: 0;
+        }
+
+        img
+        {
+            max-width: 350px;
+            height: auto;
+            display: block;
+        }
+    }
+
+    // 通常のpタグ（テキスト）
+    p:not(.image-grid):not(.section-title)
+    {
+        clear: both;
+    }
+
+    // 画像を含むpタグ（フォールバック）
+    p a:has(img)
+    {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 10px 15px 0;
+    }
+
+    p img
+    {
+        max-width: 350px;
+        height: auto;
+    }
+}
+
+/* トピックス表示 */
+div#toptopics
+{
+    clear: both;
+    margin: 0;
+    padding: 0 10px 0 0;
+    border: none;
+    width: 755px;
+}
+
+div#toptopics-inn
+{
+    margin: -20px auto 10px auto;
+    border: none;
+    background: url('../img/topics.jpg') no-repeat left top;
+    height: 52px;
+}
+
+div#toptopics ul
+{
+    margin: 10px 0 0 0;
+    padding: 10px 5px 5px 10px;
+    list-style-type: none;
+    border: 1px solid $border-color;
+    height: 425px;
+    overflow: auto;
+}
+
+div#toptopics a
+{
+    color: $link-color;
+    font-size: 12px;
+    line-height: 14px;
+
+    &:hover
+    {
+        color: $link-hover;
+        text-decoration: none;
+    }
+}
+
+div#toptopics ul li
+{
+    border-bottom: 1px dashed $border-color;
+    margin-bottom: 4px;
+    padding-bottom: 1px;
+    text-indent: 20px;
+    background: url('../img/icn_arrow.gif') no-repeat;
+    line-height: 25px;
+
+    &.loading,
+    &.error
+    {
+        background: none;
+        text-indent: 0;
+        padding: 10px;
+        color: $secondary-color;
+    }
+
+    &.error
+    {
+        color: #c00;
+    }
+
+    span.date
+    {
+        color: $primary-color;
+        font-size: 11px;
+        padding: 3px 4px 2px;
+        margin-right: 0;
+    }
+}
+
+/* ナビゲーション */
+.navigation
+{
+    clear: both;
+    text-align: center;
+    padding: 20px 0 0;
+
+    a
+    {
+        color: white;
+        padding: 2px 10px;
+        background-color: #999;
+        border: 2px solid #ccc;
+        font-size: 11px;
+
+        &:hover
+        {
+            color: #fff;
+        }
+    }
+
+    div.alignleft
+    {
+        display: inline;
+        margin: 0 5px;
+    }
+
+    div.alignright
+    {
+        display: inline;
+        margin: 0 5px;
+    }
+}
+
+/* フッター */
+.copyright
+{
+    color: #fff;
+    margin-top: 10px;
+    font: bold 12px/14px Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+/* 閉じるボタン */
+.close-btn
+{
+    margin: 50px auto 30px auto;
+    display: block;
+}

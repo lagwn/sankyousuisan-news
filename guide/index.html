@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ニュース投稿ガイド - 三共水産</title>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --secondary: #4a90d9;
+            --accent: #ff6b35;
+            --bg: #f5f8fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --border: #e1e8ed;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'メイリオ', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .toc {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .toc h2 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .toc ol {
+            margin-left: 1.5rem;
+        }
+
+        .toc li {
+            margin: 0.5rem 0;
+        }
+
+        .toc a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            color: var(--primary);
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .section h3 {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .note {
+            background: #fff8e1;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .note::before {
+            content: '💡 ';
+        }
+
+        .warning {
+            background: #ffebee;
+            border: 1px solid #f44336;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .warning::before {
+            content: '⚠️ ';
+        }
+
+        .tip {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tip::before {
+            content: '✅ ';
+        }
+
+        .screenshot {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .screenshot img {
+            max-width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .screenshot figcaption {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .icon-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .icon-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .icon-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .button-guide {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-family: monospace;
+            border: 1px solid var(--border);
+        }
+
+        .cms-link {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 1rem 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cms-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .step {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1>📝 ニュース投稿ガイド</h1>
+        <p>三共水産ホームページ - 市場からの便り 投稿マニュアル</p>
+    </header>
+
+    <div class="container">
+        <nav class="toc">
+            <h2>📋 目次</h2>
+            <ol>
+                <li><a href="#login">管理画面へのログイン</a></li>
+                <li><a href="#create">新規投稿の作成</a></li>
+                <li><a href="#image">画像の挿入方法</a></li>
+                <li><a href="#format">テキストの書式設定</a></li>
+                <li><a href="#publish">記事の公開</a></li>
+                <li><a href="#edit">記事の編集・削除</a></li>
+                <li><a href="#faq">よくある質問</a></li>
+            </ol>
+        </nav>
+
+        <!-- ログイン -->
+        <section id="login" class="section">
+            <h2>1. 管理画面へのログイン</h2>
+
+            <p>まず、microCMSの管理画面にアクセスします。</p>
+
+            <a href="https://sankyousuisan.microcms.io/" target="_blank" class="cms-link">
+                🔐 管理画面を開く
+            </a>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>ログインページにアクセス</h4>
+                    <p>上のボタンをクリックするか、ブラウザで <strong>sankyousuisan.microcms.io</strong> を開きます。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>メールアドレスとパスワードを入力</h4>
+                    <p>登録されているアカウント情報でログインしてください。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>「news」APIを選択</h4>
+                    <p>左側のメニューから「<strong>news</strong>」をクリックします。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 新規投稿 -->
+        <section id="create" class="section">
+            <h2>2. 新規投稿の作成</h2>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>「追加」ボタンをクリック</h4>
+                    <p>画面右上の「<strong>＋追加</strong>」ボタンをクリックします。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>各項目を入力</h4>
+                    <ul class="icon-list">
+                        <li><strong>タイトル</strong>：記事のタイトルを入力</li>
+                        <li><strong>本文</strong>：記事の本文を入力（リッチエディタ）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="note">
+                「本文」フィールドには<strong>リッチエディタ</strong>が使えます。Wordのように直感的にテキストを編集でき、画像も簡単に挿入できます！
+            </div>
+
+            <div class="tip">
+                <strong>日付は自動設定</strong><br>
+                記事の日付は公開時に自動でセットされます。「日付」と「HTML本文」フィールドは空欄のままでOKです！
+            </div>
+        </section>
+
+        <!-- 画像挿入 -->
+        <section id="image" class="section">
+            <h2>3. 画像の挿入方法</h2>
+
+            <p>リッチエディタを使って、簡単に画像を挿入できます。</p>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>画像を挿入したい位置にカーソルを置く</h4>
+                    <p>本文エディタ内の、画像を入れたい場所をクリックします。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>画像ボタンをクリック</h4>
+                    <p>ツールバーの<span class="button-guide">📷 画像アイコン</span>（山と太陽のマーク）をクリックします。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>画像をアップロード</h4>
+                    <p>「アップロード」を選んで、パソコンから画像ファイルを選択します。<br>
+                        または、既にアップロード済みの画像から選ぶこともできます。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>画像が挿入される</h4>
+                    <p>選んだ画像がエディタ内に表示されます。</p>
+                </div>
+            </div>
+
+            <div class="tip">
+                <strong>横並びで表示したい場合</strong><br>
+                複数の画像を連続して挿入すると、サイトでは自動的に横並び（グリッドレイアウト）で表示されます！
+            </div>
+
+            <div class="note">
+                <strong>推奨画像サイズ</strong><br>
+                幅 1200px 程度の画像が最適です。大きすぎる画像は自動的にリサイズされます。
+            </div>
+        </section>
+
+        <!-- 書式設定 -->
+        <section id="format" class="section">
+            <h2>4. テキストの書式設定</h2>
+
+            <p>リッチエディタのツールバーで、以下の書式が使えます：</p>
+
+            <h3>よく使う機能</h3>
+            <ul class="icon-list">
+                <li><strong>太字</strong>：テキストを選択して「B」ボタン</li>
+                <li><strong>見出し</strong>：テキストを選択して「段落▼」から見出しを選択</li>
+                <li><strong>リンク</strong>：テキストを選択して「🔗」ボタン</li>
+                <li><strong>箇条書き</strong>：「リスト」ボタンをクリック</li>
+            </ul>
+
+            <div class="tip">
+                セクションの区切りには<strong>見出し</strong>（H2やH3）を使うと、読みやすい記事になります。
+            </div>
+        </section>
+
+        <!-- 公開 -->
+        <section id="publish" class="section">
+            <h2>5. 記事の公開</h2>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>内容を確認</h4>
+                    <p>入力した内容に誤りがないか確認します。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>「公開」ボタンをクリック</h4>
+                    <p>画面右上の「<strong>公開</strong>」ボタンをクリックします。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>完了！</h4>
+                    <p>記事がホームページに公開されます。数分以内に反映されます。</p>
+                </div>
+            </div>
+
+            <div class="warning">
+                「下書き保存」を選ぶと、まだ公開せずに保存できます。後で編集して公開することができます。
+            </div>
+        </section>
+
+        <!-- 編集・削除 -->
+        <section id="edit" class="section">
+            <h2>6. 記事の編集・削除</h2>
+
+            <h3>記事を編集する</h3>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>記事を選択</h4>
+                    <p>newsの一覧から編集したい記事をクリックします。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>内容を修正</h4>
+                    <p>必要な箇所を編集します。</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>「公開」をクリック</h4>
+                    <p>修正内容を反映するには、再度「公開」を押します。</p>
+                </div>
+            </div>
+
+            <h3>記事を削除する</h3>
+            <p>記事の編集画面で、右上の「…」メニューから「削除」を選択します。</p>
+
+            <div class="warning">
+                削除した記事は復元できません。削除前に内容をよく確認してください。
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section">
+            <h2>7. よくある質問</h2>
+
+            <h3>Q: 画像が大きすぎて表示が遅いです</h3>
+            <p>A: 幅1200px程度にリサイズしてからアップロードすると、表示が速くなります。</p>
+
+            <h3>Q: 下書きを公開するには？</h3>
+            <p>A: 下書きの記事を開いて、「公開」ボタンをクリックしてください。</p>
+
+            <h3>Q: 「日付」や「HTML本文」は入力しなくていいの？</h3>
+            <p>A: はい、空欄のままで大丈夫です！日付は公開時に自動でセットされます。「HTML本文」は過去の記事用のフィールドなので、新規投稿では使用しません。</p>
+
+            <h3>Q: 古い投稿を編集したら表示がおかしくなりました</h3>
+            <p>A: 古い投稿は「HTML本文」フィールドを使っています。新しいフィールド「本文」に内容をコピーすると、リッチエディタで編集できます。</p>
+
+            <h3>Q: 画像をクリックすると拡大表示されますか？</h3>
+            <p>A: はい、サイト上で画像をクリックすると自動的に拡大表示されます（ライトボックス機能）。</p>
+        </section>
+
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+            <h2 style="border: none; color: #2e7d32;">🎉 準備完了！</h2>
+            <p style="font-size: 1.1rem; margin: 1rem 0;">これで記事の投稿ができます</p>
+            <a href="https://sankyousuisan.microcms.io/apis/news/create" target="_blank" class="cms-link"
+                style="background: #27ae60;">
+                ✏️ 新規投稿を作成する
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>三共水産株式会社 ニュース投稿ガイド</p>
+        <p>ご不明な点は管理者までお問い合わせください。</p>
+    </footer>
+</body>
+
+</html>

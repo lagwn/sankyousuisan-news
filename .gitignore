@@ -1,0 +1,18 @@
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+.env
+
+# Editor
+.DS_Store
+._*
+*.swp
+*.swo
+
+# Data files (not needed for deployment)
+*.csv
+export_data.json
+
+# Logs
+*.log
