@@ -327,13 +327,9 @@ function convertHttpImagesToProxy(container) {
         if (href && href.startsWith('http://')) {
             const url = new URL(href);
             if (targetDomains.some(domain => url.hostname.includes(domain))) {
-                // 画像ファイルの拡張子チェック
-                const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
-                const isImage = imageExtensions.some(ext => href.toLowerCase().includes(ext));
-                if (isImage) {
-                    const proxyUrl = `/api/image-proxy?url=${encodeURIComponent(href)}`;
-                    link.setAttribute('href', proxyUrl);
-                }
+                // ドメインが一致する場合はすべてプロキシ経由にする（PDFなども含む）
+                const proxyUrl = `/api/image-proxy?url=${encodeURIComponent(href)}`;
+                link.setAttribute('href', proxyUrl);
             }
         }
     });
