@@ -8,7 +8,7 @@ const MicroCMS = {
      * @returns {Promise<Object>} - 記事一覧データ
      */
     async getList(limit = 100) {
-        const url = `https://${MICROCMS_CONFIG.serviceDomain}.microcms.io/api/v1/${MICROCMS_CONFIG.endpoint}?limit=${limit}&orders=-postDate`;
+        const url = `https://${MICROCMS_CONFIG.serviceDomain}.microcms.io/api/v1/${MICROCMS_CONFIG.endpoint}?limit=${limit}&orders=-publishedAt`;
 
         try {
             const response = await fetch(url, {
